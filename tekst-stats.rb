@@ -6,4 +6,4 @@ class TextStats
   end
 end
 
-text=TextStats.new(STDIN.read)
+text=TextStats.new(text: STDIN.read)
