@@ -11,10 +11,12 @@ class TextStats
 
   def stats
     statistics = []
-    token = self.tokens
-    token.each do |item|
-      statistics << "#{item}:#{text.scan(item).size}"
-    end
+    hash = []
+    token = tokens
+    token.each { |item| hash << { name: item, size: text.scan(item).size } }
+    hash.sort_by! { |item| item[:size] }
+    hash.reverse!
+    hash.each { |item| statistics << "#{item[:name]}:#{item[:size]}" }
     statistics
   end
 end
