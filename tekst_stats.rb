@@ -6,8 +6,17 @@ class TextStats
   end
 
   def tokens
-    @text.split
+    text.split
+  end
+
+  def stats
+    statistics = []
+    token = self.tokens
+    token.each do |item|
+      statistics << "#{item}:#{text.scan(item).size}"
+    end
+    statistics
   end
 end
 
-puts TextStats.new(STDIN.read).tokens.inspect
+puts TextStats.new(STDIN.read).stats.inspect
