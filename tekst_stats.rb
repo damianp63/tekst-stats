@@ -10,10 +10,12 @@ class TextStats
   end
 
   def stats
-    statistics = []
-    hash = []
     token = tokens
-    hash = token.each_with_object([]) { |item,memo| memo << [item] }
+    token.each_with_object(Hash.new(0)) do |item, memo|
+      i = 0
+      token.each { |word| if word == item then i += 1 end }
+      memo[item] = i
+    end
   end
 end
 
