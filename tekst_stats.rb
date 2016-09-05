@@ -6,18 +6,14 @@ class TextStats
   end
 
   def tokens
-    text.split
+    text.scan(/\w+/)
   end
 
   def stats
     statistics = []
     hash = []
     token = tokens
-    token.each { |item| hash << { name: item, size: text.scan(item).size } }
-    hash.sort_by! { |item| item[:size] }
-    hash.reverse!
-    hash.each { |item| statistics << "#{item[:name]}:#{item[:size]}" }
-    statistics
+    hash = token.each_with_object([]) { |item,memo| memo << [item] }
   end
 end
 
