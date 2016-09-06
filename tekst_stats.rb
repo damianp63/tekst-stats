@@ -9,12 +9,12 @@ class TextStats
     text.scan(/\w+/)
   end
 
-  def count
+  def stats
     tokens.each_with_object(Hash.new(0)) { |item, memo| memo[item] += 1 }
   end
 
   def sorted_stats
-    count.sort_by { |token, count| [-count, token] }
+    stats.sort_by { |token, count| [-count, token] }
   end
 
   def show
