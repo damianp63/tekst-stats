@@ -10,12 +10,10 @@ class TextStats
   end
 
   def stats
-    statistics = []
     token = tokens
     hash = token.each_with_object(Hash.new(0)) { |item, memo| memo[item] += 1 }
-    hash = hash.sort_by { |_key, value| value }.reverse
-    hash.each { |item| statistics << "#{item[0]}:#{item[1]}" }
-    [token, statistics]
+    hash = hash.sort { |previous,after| after<=>previous}
+    hash = hash.sort_by { |_key, value| value }.reverse.to_h
   end
 end
 
