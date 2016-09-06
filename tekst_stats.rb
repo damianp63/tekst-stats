@@ -14,19 +14,18 @@ class TextStats
   end
 
   def sorted_stats
-    hash = stats
-    hash = hash.sort { |previous, after| after <=> previous }
-    hash.sort_by { |_key, value| value }.reverse
+    stats.sort_by { |token, multiple| [-multiple, token] }
   end
 
   def show
-    stat = "\n"
-    token = text
+    stat = ""
     sorted_stats.each { |item| stat += "[#{item[0]}:#{item[1]}] " }
-    token = token.gsub(/\w+/) { |word| "[#{word}]" }
-    token = token.inspect
-    stat = stat.inspect
-    "#{self.class} text: #{text.inspect}, tokenized: #{token}, stats: #{stat}"
+    token = text.gsub(/\w+/) { |word| "[#{word}]" }
+    tokenened_text = token.inspect
+    stats = stat.inspect
+    clas = self.class
+    text_info = text.inspect
+    "#{clas} text: #{text_info}, tokenized: #{tokenened_text}, stats: #{stats}"
   end
 end
 
