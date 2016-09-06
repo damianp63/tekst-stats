@@ -20,7 +20,7 @@ class TextStats
   end
 
   def show
-    [tokens,sort]
+    [text, tokens, sort]
   end
 end
 
