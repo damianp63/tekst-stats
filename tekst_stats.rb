@@ -10,11 +10,21 @@ class TextStats
   end
 
   def stats
-    token = tokens
-    hash = token.each_with_object(Hash.new(0)) { |item, memo| memo[item] += 1 }
-    hash = hash.sort { |previous,after| after<=>previous}
-    hash = hash.sort_by { |_key, value| value }.reverse.to_h
+    tokens.each_with_object(Hash.new(0)) { |item, memo| memo[item] += 1 }
+  end
+
+  def sort
+    hash = stats
+    hash = hash.sort { |previous, after| after <=> previous }
+    hash.sort_by { |_key, value| value }.reverse
+  end
+
+  def show
+    statistics = []
+    hash = sort
+    hash.each { |item| statistics << "#{item[0]}:#{item[1]}" }
+    statistics
   end
 end
 
-puts TextStats.new(STDIN.read).stats.inspect
+puts TextStats.new(STDIN.read).show.inspect
