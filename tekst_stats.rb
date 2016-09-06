@@ -17,11 +17,11 @@ class TextStats
     stats.sort_by { |token, count| [-count, token] }
   end
 
-  def show
+  def inspect
     stats = sorted_stats.reduce([]) { |memo, item| memo << item.join(':') }.join('] [') + ']'
     token = text.gsub(/\w+/) { |word| "[#{word}]" }
     "#{self.class} text: #{text.inspect}, tokenized: #{token.inspect}, stats: #{stats.inspect}"
   end
 end
 
-print TextStats.new(STDIN.read).show
+print TextStats.new(STDIN.read).inspect
