@@ -14,7 +14,7 @@ class TextStats
   end
 
   def sorted_stats
-    stats.sort_by { |token, multiple| [-multiple, token] }
+    stats.sort_by { |token, count| [-count, token] }
   end
 
   def show
