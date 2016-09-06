@@ -24,8 +24,8 @@ class TextStats
     token = text
     sorted_stats.each { |item| statistics += "[#{item[0]}:#{item[1]}] " }
     token = token.gsub(/\w+/) { |word| "[" + word + "]" }
-    "#{self.class} text: #{text}, tokenized: #{token}, stats: #{statistics}"
+    "#{self.class} text: #{text.inspect}, tokenized: #{token.inspect}, stats: #{statistics.inspect}"
   end
 end
 
-print TextStats.new(STDIN.read).show.inspect
+print TextStats.new(STDIN.read).show
