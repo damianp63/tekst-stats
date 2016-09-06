@@ -18,14 +18,10 @@ class TextStats
   end
 
   def show
-    stat = ""
-    sorted_stats.each { |item| stat += "[#{item[0]}:#{item[1]}] " }
+    stats = ""
+    sorted_stats.each { |token, count| stats += "[#{token}:#{count}] " }
     token = text.gsub(/\w+/) { |word| "[#{word}]" }
-    tokenened_text = token.inspect
-    stats = stat.inspect
-    clas = self.class
-    text_info = text.inspect
-    "#{clas} text: #{text_info}, tokenized: #{tokenened_text}, stats: #{stats}"
+    "#{self.class} text: #{text.inspect}, tokenized: #{token.inspect}, stats: #{stats.inspect}"
   end
 end
 
