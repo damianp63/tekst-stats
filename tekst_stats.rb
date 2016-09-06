@@ -16,14 +16,11 @@ class TextStats
   def sort
     hash = stats
     hash = hash.sort { |previous, after| after <=> previous }
-    hash.sort_by { |_key, value| value }.reverse
+    hash.sort_by { |_key, value| value }.reverse.to_h
   end
 
   def show
-    statistics = []
-    hash = sort
-    hash.each { |item| statistics << "#{item[0]}:#{item[1]}" }
-    statistics
+    [tokens,sort]
   end
 end
 
