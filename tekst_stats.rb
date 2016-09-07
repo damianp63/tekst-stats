@@ -17,10 +17,26 @@ class TextStats
     stats.sort_by { |token, count| [-count, token] }
   end
 
+  def stats_inspect
+    stat = '['
+    stat + sorted_stats.reduce([]) do |memo, item|
+      memo << item.join(':')
+    end.join('] [') + ']'.inspect
+  end
+
+  def token_inspect
+    text.gsub(/\w+/) { |word| "[#{word}]" }.inspect
+  end
+
+  def text_inspect
+    text.inspect
+  end
+
   def inspect
-    stats = sorted_stats.reduce([]) { |memo, item| memo << item.join(':') }.join('] [') + ']'
-    token = text.gsub(/\w+/) { |word| "[#{word}]" }
-    "#{self.class} text: #{text.inspect}, tokenized: #{token.inspect}, stats: #{stats.inspect}"
+    "#{self.class}
+    text: #{text_inspect},
+    tokenized: #{token_inspect},
+    stats: #{stats_inspect}"
   end
 end
 
